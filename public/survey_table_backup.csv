@@ -1,4 +1,0 @@
-Method,Modality,Task,Year,Code,Paper
-SayCan,Vision-Language,Long-horizon manipulation,2022,https://github.com/google-research/saycan,https://arxiv.org/abs/2204.01691
-RT-2,Vision-Language-Action,General manipulation,2023,https://github.com/google-research/robotics,https://robotics-transformer2.github.io/
-Octo,Vision-Language-Action,Embodied policy learning,2024,https://github.com/octo-org/octo,https://octo-paper.github.io/

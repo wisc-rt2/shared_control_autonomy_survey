@@ -2,6 +2,7 @@ baseURL = 'https://wisc-rt2.github.io/shared_control_autonomy_survey/'
 languageCode = "en-us"
 title = "Shared Control/Autonomy Survey"
 theme = "PaperMod"
+publishDir = "docs"
 enableInlineShortcodes = true
 
 [params]
