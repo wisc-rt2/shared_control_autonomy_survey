@@ -75,7 +75,7 @@ Coming soon!
 
 .bibtex-box pre {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 </style>
