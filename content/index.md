@@ -26,7 +26,7 @@ buttons:
   # - text: "Preprint (arXiv)"
   #   url: "https://arxiv.org/abs/2501.01234"
   - text: "PDF"
-    url: "/files/survey_preprint.pdf"
+    url: "/shared_control_autonomy_survey/survey_preprint.pdf"
   - text: "Interactive Table (coming soon)"
     url: "#interactive-table"   # or wherever your table anchor is
 ---
@@ -58,7 +58,7 @@ Coming soon!
   author  = {Hagenow, Michael and Selvaggio, Mario and Yu, Xuehui and Wang, Yanwei and Demiris, Yiannis and
              Bobu, Andreea and Du, Yilun and Soh, Harold and Losey, Dylan and Shah, Julie},
   year    = {2025},
-  note    = {Preprint, available at: /survey_preprint.pdf}
+  note    = {Preprint, available at: https://wisc-rt2.github.io/shared_control_autonomy_survey/survey_preprint.pdf}
 }
 </pre>
 </div>
