@@ -1,0 +1,40 @@
+{{- $src := .Get "src" -}}
+{{- $search := .Get "search" | default "false" -}}
+{{- $sort := .Get "sort" | default "false" -}}
+{{- $id := printf "tbl-%d" (now.UnixNano) -}}
+<div class="rt2-table-wrap">
+  {{ if eq $search "true" }}<input id="{{ $id }}-q" placeholder="Search…" style="margin:0 0 .75rem 0; padding:.5rem; width:100%;">{{ end }}
+  <div class="rt2-table-scroll"><table id="{{ $id }}"><thead></thead><tbody></tbody></table></div>
+</div>
+<script>
+(function(){
+  const id="{{ $id }}", enableSearch={{ if eq $search "true" }}true{{ else }}false{{ end }}, enableSort={{ if eq $sort "true" }}true{{ else }}false{{ end }};
+  function parseCSV(t){const r=[],row=[],stack={row:[],col:"",q:false};let col="",q=false;for(let i=0;i<t.length;i++){const c=t[i],n=t[i+1];if(q){if(c=='"'&&n=='"'){col+='"';i++;}else if(c=='"'){q=false;}else{col+=c;}}else{if(c=='"'){q=true;}else if(c==','){row.push(col);col='';}else if(c=='\n'){row.push(col);r.push(row.slice());row.length=0;col='';}else if(c!='\r'){col+=c;}}}if(col.length||row.length){row.push(col);r.push(row);}return r.filter(x=>x.length&&x.some(y=>y.trim()!=="")); }
+  function render(h,rows){const th=document.querySelector("#"+id+" thead"), tb=document.querySelector("#"+id+" tbody"); th.innerHTML=""; tb.innerHTML=""; const tr=document.createElement("tr");
+    h.forEach((hh,i)=>{const thd=document.createElement("th"); thd.textContent=hh; if(enableSort){thd.style.cursor="pointer"; thd.onclick=()=>sortBy(i);} tr.appendChild(thd);}); th.appendChild(tr);
+    rows.forEach(r=>{const tr=document.createElement("tr"); r.forEach(c=>{const td=document.createElement("td"); if(/^https?:\/\//.test((c||"").trim())){const a=document.createElement("a"); a.href=c; a.textContent="link"; a.target="_blank"; td.appendChild(a);} else {td.textContent=c;} tr.appendChild(td);}); tb.appendChild(tr);});
+  }
+  let H=[], R=[], base=[];
+  function sortBy(i){base.sort((a,b)=>{const x=a[i]||"", y=b[i]||""; const nx=parseFloat(x), ny=parseFloat(y); if(!isNaN(nx)&&!isNaN(ny)) return nx-ny; return x.toString().localeCompare(y.toString());}); render(H, base); if(enableSearch) search(document.getElementById(id+"-q").value);}
+  function search(q){q=q.toLowerCase(); const f=!q?base:base.filter(r=>r.some(c=>(c||"").toString().toLowerCase().includes(q))); render(H,f); }
+  fetch("{{ $src }}").then(r=>r.text()).then(t=>{R=parseCSV(t); H=R[0]||[]; base=R.slice(1); render(H,base); if(enableSearch){document.getElementById(id+"-q").oninput=e=>search(e.target.value);} });
+})();
+</script>
+<style>
+.survey-hero{text-align:center;margin:1.5rem 0 1rem;}
+.survey-title{margin:0 0 .25rem 0;font-size:2rem;font-weight:800;}
+.survey-venue{color:#c2410c;font-weight:700;margin-bottom:.5rem;}
+.survey-authors{margin:.25rem 0 .25rem 0; line-height:1.6}
+.survey-authors a{text-decoration:none}
+.survey-affnotes{font-size:.9rem;color:#555}
+.survey-buttons{text-align:center;margin:1rem 0 1.25rem;display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.pill{display:inline-block;padding:.5rem .9rem;border-radius:999px;border:1px solid #e5e7eb;text-decoration:none}
+.pill:hover{background:#f8fafc}
+.survey-figure{margin:1.5rem 0;text-align:center}
+.survey-figure img{max-width:100%;border:1px solid #e5e7eb;border-radius:.5rem}
+.citation-box{border-left:4px solid #2563eb;background:#f8fafc;padding:.8rem 1rem;margin:1rem 0}
+.rt2-table-scroll{overflow:auto}
+#{{ $id }}{border-collapse:collapse;width:100%}
+#{{ $id }} th,#{{ $id }} td{border-bottom:1px solid #e5e7eb;padding:.5rem;text-align:left}
+#{{ $id }} tr:hover td{background:#fafafa}
+</style>

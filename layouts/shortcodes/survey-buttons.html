@@ -1,0 +1,32 @@
+<div class="survey-buttons">
+  {{ range .Page.Params.buttons }}
+    <a class="pill" href="{{ .url }}" target="_blank" rel="noopener">{{ .text }}</a>
+  {{ end }}
+</div>
+
+<style>
+.survey-buttons {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.survey-buttons .pill {
+  display: inline-block;
+  padding: 0.45rem 1.0rem;
+  background: #e5e7eb; /* soft gray */
+  color: #111;
+  border-radius: 999px; /* pill shape */
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.survey-buttons .pill:hover {
+  background: #d1d5db; /* slightly darker gray on hover */
+  border-color: #9ca3af;
+}
+</style>

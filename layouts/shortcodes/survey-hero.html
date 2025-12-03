@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+
+<section class="survey-hero">
+  <h1 class="survey-title">{{ .Page.Title }}</h1>
+
+  {{/* Step 1: Build a map of unique affiliations */}}
+  {{ $affMap := dict }}
+  {{ $affOrder := slice }}
+
+  {{ range .Page.Params.authors }}
+    {{ with .affiliation }}
+      {{ if not (isset $affMap .) }}
+        {{ $num := add (len $affMap) 1 }}
+        {{ $affMap = merge $affMap (dict . $num) }}
+        {{ $affOrder = $affOrder | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Step 2: Author line */}}
+  <div class="survey-authors">
+    {{ range $i, $a := .Page.Params.authors }}
+      {{ $num := index $affMap $a.affiliation }}
+      <span class="author">
+        {{ $a.name }}<sup>{{ $num }}</sup>
+      </span>
+      {{ if lt (add $i 1) (len $.Page.Params.authors) }}, {{ end }}
+    {{ end }}
+  </div>
+
+  {{/* Step 3: Unique affiliations list */}}
+  <div class="survey-affiliations">
+    {{ range $i, $aff := $affOrder }}
+      <sup>{{ index $affMap $aff }}</sup> {{ $aff }}
+      {{ if lt (add $i 1) (len $affOrder) }} · {{ end }}
+    {{ end }}
+  </div>
+
+</section>

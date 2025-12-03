@@ -1,3 +1,22 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = 'https://wisc-rt2.github.io/shared_control_autonomy_survey/'
+languageCode = "en-us"
+title = "Shared Control/Autonomy Survey"
+theme = "PaperMod"
+enableInlineShortcodes = true
+
+[params]
+  defaultTheme = "light"
+  ShowReadingTime = false
+  ShowPostNavLinks = false
+  ShowBreadCrumbs = false
+  disableScrollToTop = false
+  custom_head = ["head-custom.html"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[menu]
+#  [[menu.main]]
+#  name = "Home"
+#  url = "/"
+#  weight = 1
