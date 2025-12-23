@@ -33,3 +33,19 @@ section.survey-hero .survey-title {
     font-size: 0.7em;
     margin-right: 2px;
 }
+
+/* Increase content width */
+:root{
+  --main-width: 1000px;   /* default is ~800px */
+}
+
+.rt2-table-scroll,
+.post-content pre {
+  scrollbar-color: #cbd5e1 #f3f4f6;
+  scrollbar-width: thin;
+}
+
+.rt2-table-scroll::-webkit-scrollbar,
+.post-content pre::-webkit-scrollbar {
+  height: 10px;
+}

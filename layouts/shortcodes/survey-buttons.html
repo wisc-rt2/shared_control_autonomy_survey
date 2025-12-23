@@ -7,6 +7,8 @@
 <style>
 .survey-buttons {
   display: flex;
+  justify-content: center;   /* ← THIS is the main fix */
+  width: 100%;               /* ← THIS prevents PaperMod narrowing */
   gap: 0.6rem;
   flex-wrap: wrap;
   margin: 1rem 0;

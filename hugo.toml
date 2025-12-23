@@ -12,6 +12,7 @@ enableInlineShortcodes = true
   ShowBreadCrumbs = false
   disableScrollToTop = false
   custom_head = ["head-custom.html"]
+  disableThemeToggle = true
 
 [markup.goldmark.renderer]
   unsafe = true

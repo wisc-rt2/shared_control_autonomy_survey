@@ -23,13 +23,16 @@ authors:
   - name: "Julie Shah"
     affiliation: "Massachusetts Institute of Technology"
 buttons:
-  # - text: "Preprint (arXiv)"
-  #   url: "https://arxiv.org/abs/2501.01234"
   - text: "PDF"
     url: "/shared_control_autonomy_survey/survey_preprint.pdf"
-  - text: "Interactive Table (coming soon)"
+  - text: "Preprint (TechRxiv)"
+    url: "https://www.techrxiv.org/doi/full/10.36227/techrxiv.176617724.41163595"
+  - text: "Interactive Table"
     url: "#interactive-table"   # or wherever your table anchor is
 ---
+
+<link rel="stylesheet" href="/css/custom.css">
+
 
 {{< survey-hero >}}
 {{< survey-buttons >}}
@@ -43,22 +46,20 @@ buttons:
 In shared control and shared autonomy systems, humans collaborate with robot agents to achieve common goals. Research in this area dates back over 40 years, with numerous applications, such as in manufacturing, robot surgery, and assistive technologies. Shared control approaches have even seen some commercialization efforts in areas like semi-autonomous driving and automotive assembly. Recently, shared control and shared autonomy approaches have gained significant traction, with hundreds of new methods published in scientific papers each year. In this paper, we examine recent approaches and trends in these methods, investigating several crucial aspects that are underexplored in previous surveys. First, we provide descriptive statistics and trends related to human input methods, technical approaches, and applications. Second, we examine the growing role of generative artificial intelligence approaches in shared control and autonomy. Based on these insights, we offer updated recommendations for future approaches.
 
 
-
-
 ## Interactive Table
-Coming soon!
-{{< csv-table src="survey_table.csv" search=true sort=true >}}
+{{< csv-table src="scsa_survey_no_authors.csv" search=true sort=true >}}
 
 ## Citation
 
 <div class="bibtex-box">
 <pre>
 @article{hagenow2025shared,
-  title   = {Shared Control/Autonomy: A Historical Perspective, Current Trends, and the Role of Generative AI},
-  author  = {Hagenow, Michael and Selvaggio, Mario and Yu, Xuehui and Wang, Yanwei and Demiris, Yiannis and
-             Bobu, Andreea and Du, Yilun and Soh, Harold and Losey, Dylan and Shah, Julie},
-  year    = {2025},
-  note    = {Preprint, available at: https://wisc-rt2.github.io/shared_control_autonomy_survey/survey_preprint.pdf}
+  title={Shared Control/Autonomy: A Historical Perspective, Current Trends, and the Role of Generative AI},
+  author={Hagenow, Michael and Selvaggio, Mario and Yu, Xuehui and Wang, Yanwei and Demiris, Yiannis and Bobu, Andreea and Du, Yilun and Soh, Harold and Losey, Dylan and Shah, Julie},
+  journal={Authorea Preprints},
+  year={2025},
+  publisher={Authorea},
+  doi={10.36227/techrxiv.176617724.41163595/v1}
 }
 </pre>
 </div>
@@ -69,13 +70,36 @@ Coming soon!
   padding: 0.75rem 1rem;
   background: #f6f9ff;
   border-radius: 4px;
-  overflow-x: auto;   /* enables horizontal scroll if needed, but rarely used now */
+  overflow-x: auto;
   margin: 1rem 0;
+
+  /* Firefox scrollbar */
+  scrollbar-color: #cbd5e1 #f3f4f6;
+  scrollbar-width: thin;
 }
 
 .bibtex-box pre {
   margin: 0;
-  font-size: 0.65rem;
+  font-size: 1.0rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* WebKit scrollbar (Chrome, Edge, Safari) */
+.bibtex-box::-webkit-scrollbar {
+  height: 10px;
+}
+
+.bibtex-box::-webkit-scrollbar-track {
+  background: #f3f4f6;      /* same as table scroll area */
+  border-radius: 6px;
+}
+
+.bibtex-box::-webkit-scrollbar-thumb {
+  background: #cbd5e1;      /* same thumb color as tables */
+  border-radius: 6px;
+}
+
+.bibtex-box::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 </style>
